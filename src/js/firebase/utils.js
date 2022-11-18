@@ -12,12 +12,13 @@ import { getFirestore } from 'firebase/firestore';
 // };
 
 const config = {
-  apiKey: "AIzaSyD6Ady1jhuAgqwFL0qbhu5KyUIJdTFoZmc",
-  authDomain: "filmoteka-268b8.firebaseapp.com",
-  projectId: "filmoteka-268b8",
-  storageBucket: "filmoteka-268b8.appspot.com",
-  messagingSenderId: "661144848024",
-  appId: "1:661144848024:web:d78c5ac841ef43fb0472ed"
+  apiKey: 'AIzaSyA4A5UHRxZpdRxFfXU2Tf8n6yv6z-axasA',
+  authDomain: 'filmoteka-co.firebaseapp.com',
+  projectId: 'filmoteka-co',
+  storageBucket: 'filmoteka-co.appspot.com',
+  messagingSenderId: '730428813603',
+  appId: '1:730428813603:web:35b4b913bf9e1c6e6b5c96',
+  measurementId: 'G-QPR1E8J86E',
 };
 
 function getFirebaseConfig() {

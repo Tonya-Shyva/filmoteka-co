@@ -1,0 +1,59 @@
+<main>
+  <div class="container">
+      <section class="splide">
+        <div class="splide__track">
+          <ul class="splide__list" data-modal-open-slider></ul>
+        </div>
+      </section>
+    </div>
+  <div class="movies section">
+  <div class="container">
+    <!-- прихований герой-заголовок -->
+    <h1 class="visually-hidden">Movie trailer searching site</h1>
+
+    <!-- список, у який будуть рендеритися шаблони карток фільмів -->
+    <div class="movies__list" data-modal-open></div>
+    <div class="sentinel"></div>
+
+    <!-- ----модалка для картки фільму -->
+    <div class="backdrop is-hidden" data-modal>
+      <div class="movie-modal">
+        <button type="button" class="btn-close" data-modal-close>
+          <svg class="icon-close" width="30" height="30">
+            <use href="./images/sprite.svg#icon-close-menu"></use>
+          </svg>
+        </button>
+
+        <div class="wrap-disc">
+        </div>
+        <button type='button' class="modal__button-play trailer-button trailer-btn" data-btn>
+          <img class="modal__img-play" src="https://11amthemovie.com/wp-content/uploads/2018/02/watchtrailer-playbutton-orange-e1519855507396.png" alt="play trailer" width="350px" height="100px" />
+          </button>
+      </div>
+    </div>
+
+    <!-- -------------модалка для слайдера------------- -->
+    <div class="backdrop-slider is-hidden" data-modal-slider>
+      <div class="movie-modal">
+        <button type="button" class="btn-close" data-modal-close-slider>
+          <svg class="icon-close" width="30" height="30">
+            <use href="./images/sprite.svg#icon-close-menu"></use>
+          </svg>
+        </button>
+        <div class="wrap-disc"></div>
+      </div>
+    </div>
+
+
+    <!-- ----пагінація -->
+    <include src="./partials/pagination.html"></include>
+</main>
+
+    <!-- -----------btn scroll to top----------------- -->
+    <a href="#search-form" class="to-top">
+      <svg width="30" height="30" aria-label="to top">
+        <use href="./images/sprite.svg#arrow-up" />
+      </svg>
+    </a>
+  </div>
+</div>

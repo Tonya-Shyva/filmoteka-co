@@ -29,9 +29,9 @@ onAuthStateChanged(auth, user => {
   if (user) {
     refs.modal.classList.add('is-hidden');
     refs.body.classList.remove('no-scroll');
-    refs.openModalAuthBtn.classList.add('is-hidden');
+    refs.openModalAuthBtn.innerHTML = '<span>SIGN OUT</span>';
     refs.sigInGoogleBtn.classList.add('is-hidden');
-    refs.signOutBtn.classList.remove('is-hidden');
+    // refs.signOutBtn.classList.remove('is-hidden');
     refs.userInfo.innerHTML = `
               <span>${user.email}</span>
             `;
@@ -39,9 +39,9 @@ onAuthStateChanged(auth, user => {
     localStorage.setItem('UserID', user.uid);
   } else {
     // console.log('User Is Out');
-    refs.openModalAuthBtn.classList.remove('is-hidden');
+    refs.openModalAuthBtn.innerHTML = '<span>SIGN IN</span>';
     refs.sigInGoogleBtn.classList.remove('is-hidden');
-    refs.signOutBtn.classList.add('is-hidden');
+    // refs.signOutBtn.classList.add('is-hidden');
     refs.userInfo.innerHTML = ``;
     refs.myLibLink.classList.add('visually-hidden');
     localStorage.setItem('UserID', 'DefaultUser');
@@ -55,7 +55,7 @@ refs.registerForm.addEventListener('submit', onCreateUser);
 // -----------login with GOOGLE----------------//
 refs.sigInGoogleBtn.addEventListener('click', GoogleSigIn);
 // -----------logOut----------------//
-refs.signOutBtn.addEventListener('click', onLogOut);
+refs.openModalAuthBtn.addEventListener('click', onLogOut);
 
 function onSignIn(e) {
   e.preventDefault();
@@ -126,7 +126,10 @@ function onCreateUser(e) {
 }
 
 function onLogOut() {
-  signOut(auth)
-    .then(() => {})
-    .catch(error => {});
+  if (refs.openModalAuthBtn.innerHTML === '<span>SIGN OUT</span>') {
+    return signOut(auth)
+      .then(() => {})
+      .catch(error => {});
+  }
+  return;
 }

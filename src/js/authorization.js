@@ -4,8 +4,6 @@
     modal: document.querySelector('[data-modal-auth]'),
     body: document.querySelector('body'),
     closeModalAuthBtn: document.querySelector('[data-modal-auth-close]'),
-    //   backdrop: document.querySelector('.backdrop'),
-    //   authModal: document.querySelector('.auth'),
   };
 
   refs.openModalAuthBtn.addEventListener('click', toggleModal);

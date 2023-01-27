@@ -6,9 +6,11 @@ import { getFirestore, collection, getDocs } from 'firebase/firestore';
 initFireBase();
 
 const db = getFirestore();
+console.log(db);
 
-const colId  = localStorage.getItem('UserID');
-const colRef = collection(db, colId );
+const colId = localStorage.getItem('UserID');
+const colRef = collection(db, colId);
+console.log(colRef);
 
 const divQueue = document.querySelector('.movies__list');
 
@@ -16,45 +18,47 @@ toggleLightTheme();
 
 export function myLibPagination(fieldName) {
   getDocs(colRef)
-  .then(snapshot => {
-    const myLibList = snapshot.docs[0].data();
-    let queueTotalResults = fieldName === 'Queue'? 
-    myLibList.Queue.length:
-    myLibList.Watched.length;
+    .then(snapshot => {
+      console.log(snapshot);
+      const myLibList = snapshot.docs[0].data();
+      let queueTotalResults =
+        fieldName === 'Queue'
+          ? myLibList.Queue.length
+          : myLibList.Watched.length;
 
-    const pagination = new Pagination(document.getElementById('pagination'), {
-      totalItems: queueTotalResults,
-      itemsPerPage: 18,
-      visiblePages: 5,
-      centerAlign: true,
+      const pagination = new Pagination(document.getElementById('pagination'), {
+        totalItems: queueTotalResults,
+        itemsPerPage: 18,
+        visiblePages: 5,
+        centerAlign: true,
+      });
+
+      if (queueTotalResults <= 18) return pagination.off;
+
+      pagination.on('afterMove', function (eventData) {
+        myLibRender(eventData.page, fieldName);
+        localStorage.setItem('current_page', pagination.getCurrentPage());
+      });
+    })
+    .catch(err => {
+      console.log(err.message);
     });
-
-    if (queueTotalResults <= 18) return pagination.off;
-
-    pagination.on('afterMove', function (eventData) {
-      myLibRender(eventData.page, fieldName);
-      localStorage.setItem('current_page', pagination.getCurrentPage());
-    });
-  })
-  .catch(err => {
-    console.log(err.message)
-  })
 }
 
 export function myLibRender(page, fieldName) {
-
   getDocs(colRef)
-  .then(snapshot => {
-    const myLibList = snapshot.docs[0].data();
-    const data = fieldName === 'Queue'? 
-    myLibList.Queue.slice(page * 18 - 18, page * 18):
-    myLibList.Watched.slice(page * 18 - 18, page * 18);
-    divQueue.innerHTML = '';
-    divQueue.insertAdjacentHTML('beforeend', renderMarkupStorage(data));
-  })
-  .catch(err => {
-    console.log(err.message)
-  })
+    .then(snapshot => {
+      const myLibList = snapshot.docs[0].data();
+      const data =
+        fieldName === 'Queue'
+          ? myLibList.Queue.slice(page * 18 - 18, page * 18)
+          : myLibList.Watched.slice(page * 18 - 18, page * 18);
+      divQueue.innerHTML = '';
+      divQueue.insertAdjacentHTML('beforeend', renderMarkupStorage(data));
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
 }
 
 function renderMarkupStorage(data) {

@@ -18,7 +18,7 @@ export const refs = {
   closeModalSliderBtn: document.querySelector('[data-modal-close-slider]'),
   trailerBtn: document.querySelector('.trailer-btn'),
   openModalAuthBtn: document.querySelector('[data-open-modal]'),
-  signOutBtn: document.querySelector('[data-sign-out]'),
+  // signOutBtn: document.querySelector('[data-sign-out]'),
   sigInGoogleBtn: document.querySelector('[data-sigin-google]'),
   modal: document.querySelector('[data-modal-auth]'),
   body: document.querySelector('body'),

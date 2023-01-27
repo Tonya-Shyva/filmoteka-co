@@ -57,24 +57,15 @@
 
   background-color: transparent;
   font: inherit;
-  color: inherit;
+  color: #000;
 
-  span {
-    text-decoration: underline;
-    cursor: pointer;
-    transition: transform $transition;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: transform $transition;
 
-    &:hover,
-    &:focus {
-      transform: scale(1.5);
-      color: $movieMainTextColor;
-    }
-
-    // border-bottom: 1px solid $footerTextColor;
-    // &::after {
-    //     content: '';
-    //   border-bottom: 1px solid;
-
-    // }
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
+    color: $accentColor;
   }
 }
